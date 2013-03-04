@@ -4,7 +4,6 @@ from pageobjects.basepageobject import BasePageObject
 from pageobjects.basepageelement import BasePageElement
 import urlparse, time
 
-#https://dev.labbler.com/profile/data/
 class ProfileDataPageObject(BasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver

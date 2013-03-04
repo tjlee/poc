@@ -1,34 +1,69 @@
+import unittest
 from pageobjects.loginpageobject import LoginPageObject
-from pageobjects.profiledatapageobject import ProfileDataPageObject
-from pageobjects.recentactivitypageobject import RecentActivityPageObject
+
+from pageobjects.profile.profiledatapageobject import ProfileDataPageObject
+from pageobjects.profile.recentactivitypageobject import RecentActivityPageObject
+from pageobjects.profile.eventspageobject import EventsPageObject
+from pageobjects.profile.playlistspageobject import PlaylistsPageObject
+from pageobjects.profile.profilewallpageobject import ProfileWallPageObject
+from pageobjects.profile.socialaccountpageobject import SocialAccountPageObject
+
 from pageobjects.firefoxConnector import FirefoxConnector
 
-import sys, unittest, re, time, os.path, logging
 
 class PageObjectExample(unittest.TestCase):
-
     def setUp(self):
         self.verificationErrors = []
-        self.selenium = FirefoxConnector.driver
-        self.selenium.implicitly_wait(30)
+        self.driver = FirefoxConnector.driver
+        self.driver.implicitly_wait(30)
         self.base_url = "https://dev.labbler.com/"
 
-    def test_login(self):
+
+    def test_navigate_profile_menu(self):
+        """
+        Discover - Music
+        Discover - News
+        Discover - Charts
+        Discover - Releases
+
+        Profile - Recent activity
+        Profile - Profile wall
+        Profile - Profile data
+        Profile - Social accounts
+        Profile - Playlists
+        Profile - Events
+
+        Messages
+        """
+
+        self.login()
+
+        rapo = RecentActivityPageObject(self.driver, self.base_url)
+        pwpo = ProfileWallPageObject(self.driver, self.base_url)
+        pdpo = ProfileDataPageObject(self.driver, self.base_url)
+        sapo = SocialAccountPageObject(self.driver, self.base_url)
+        ppo = PlaylistsPageObject(self.driver, self.base_url)
+        epo = EventsPageObject(self.driver, self.base_url)
 
 
-        lpo = LoginPageObject(self.selenium, self.base_url)
+    def login(self):
+        lpo = LoginPageObject(self.driver, self.base_url)
 
         lpo.username = "tjlee@inbox.ru"
         lpo.password = "Welcome01@"
         lpo.submit()
 
 
-        pdpo = ProfileDataPageObject(self.selenium, self.base_url)
-        rapo = RecentActivityPageObject(self.selenium, self.base_url)
+    def test_login(self):
+        self.login()
+
+        pdpo = ProfileDataPageObject(self.driver, self.base_url)
+        rapo = RecentActivityPageObject(self.driver, self.base_url)
 
     def tearDown(self):
-        self.selenium.quit()
+        self.driver.quit()
         self.assertEqual([], self.verificationErrors)
+
 
 if __name__ == "__main__":
     unittest.main()

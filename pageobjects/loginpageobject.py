@@ -66,3 +66,5 @@ class LoginPageObject(BasePageObject):
         else:
             self.fail("[error]: we are not logged in")
 
+        return BasePageObject
+
