@@ -5,18 +5,18 @@ from pageobjects.basepageelement import BasePageElement
 import urlparse, time
 
 
-class NewsPageObject(BasePageObject):
+class MessagessPageObject(BasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver
-        self.driver.get(urlparse.urljoin(base_url, "/profile/news/"))
+        self.driver.get(urlparse.urljoin(base_url, "/profile/messages/"))
 
         for i in range(60):
             try:
-                if self.driver.find_element_by_class_name("news-list").is_displayed(): break
+                if self.driver.find_element_by_class_name("messaging-page").is_displayed(): break
             except:
                 pass
             time.sleep(1)
         else:
-            self.fail("[error]: .news-list is not found")
+            self.fail("[error]: .messaging-page is not found")
 
-        self.assertEqual("Labbler / Profile / News", self.driver.title)
+        self.assertEqual("Labbler / Messages", self.driver.title)

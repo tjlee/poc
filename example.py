@@ -8,6 +8,13 @@ from pageobjects.profile.playlistspageobject import PlaylistsPageObject
 from pageobjects.profile.profilewallpageobject import ProfileWallPageObject
 from pageobjects.profile.socialaccountpageobject import SocialAccountPageObject
 
+from pageobjects.discover.chartspageobject import ChartsPageObject
+from pageobjects.discover.musicpageobject import MusicPageObject
+from pageobjects.discover.newspageobject import NewsPageObject
+from pageobjects.discover.releasespageobject import ReleasesPageObject
+
+from pageobjects.messages.messagespageobject import MessagessPageObject
+
 from pageobjects.firefoxConnector import FirefoxConnector
 
 
@@ -38,12 +45,19 @@ class PageObjectExample(unittest.TestCase):
 
         self.login()
 
+        mpo = MusicPageObject(self.driver, self.base_url)
+        npo = NewsPageObject(self.driver, self.base_url)
+        cpo = ChartsPageObject(self.driver, self.base_url)
+        rpo = ReleasesPageObject(self.driver, self.base_url)
+
         rapo = RecentActivityPageObject(self.driver, self.base_url)
         pwpo = ProfileWallPageObject(self.driver, self.base_url)
         pdpo = ProfileDataPageObject(self.driver, self.base_url)
         sapo = SocialAccountPageObject(self.driver, self.base_url)
         ppo = PlaylistsPageObject(self.driver, self.base_url)
         epo = EventsPageObject(self.driver, self.base_url)
+
+        msgpo = MessagessPageObject(self.driver, self.base_url)
 
 
     def login(self):
