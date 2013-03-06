@@ -20,6 +20,7 @@ from pageobjects.page.setspageobject import SetsPageObject
 from pageobjects.page.statisticscommentpageobject import StatisticsCommentPageObject
 from pageobjects.page.statisticsfollowingpageobject import StatisticsFollowingPageObject
 from pageobjects.page.statisticsplaypageobject import StatisticsPlayPageObject
+from pageobjects.page.statisticssharingpageobject import StatisticsSharingPageObject
 from pageobjects.page.statisticsviewpageobject import StatisticsViewPageObject
 from pageobjects.page.videopageobject import VideoPageObject
 from pageobjects.page.videouploadpageobject import VideoUploadPageObject
@@ -53,10 +54,29 @@ class PageObjectExample(unittest.TestCase):
         self.login()
 
         stat = StatisticsViewPageObject(self.driver, self.base_url)
-
         stat.view_day_statistic()
         stat.view_week_statistic()
         stat.view_month_statistic()
+
+        stat2 = StatisticsPlayPageObject(self.driver, self.base_url)
+        stat2.view_day_statistic()
+        stat2.view_week_statistic()
+        stat2.view_month_statistic()
+
+        stat3 = StatisticsCommentPageObject(self.driver, self.base_url)
+        stat3.view_day_statistic()
+        stat3.view_week_statistic()
+        stat3.view_month_statistic()
+
+        stat4 = StatisticsFollowingPageObject(self.driver, self.base_url)
+        stat4.view_day_statistic()
+        stat4.view_week_statistic()
+        stat4.view_month_statistic()
+
+        stat5 = StatisticsSharingPageObject(self.driver, self.base_url)
+        stat5.view_day_statistic()
+        stat5.view_week_statistic()
+        stat5.view_month_statistic()
 
     def test_navigate_artist_menu(self):
 
@@ -80,10 +100,13 @@ class PageObjectExample(unittest.TestCase):
         ndpo = NewsDraftsPageObject(self.driver, self.base_url)
         phpo = PhotosPageObject(self.driver, self.base_url)
         phupo = PhotosUploadPageObject(self.driver, self.base_url)
+
         svpo = StatisticsViewPageObject(self.driver, self.base_url)
         sppo = StatisticsPlayPageObject(self.driver, self.base_url)
         scpo = StatisticsCommentPageObject(self.driver, self.base_url)
+        sspo = StatisticsSharingPageObject(self.driver, self.base_url)
         sfpo = StatisticsFollowingPageObject(self.driver, self.base_url)
+
         vpo = VideoPageObject(self.driver, self.base_url)
         vupo = VideoUploadPageObject(self.driver, self.base_url)
 

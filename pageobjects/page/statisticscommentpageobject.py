@@ -4,9 +4,10 @@ from pageobjects.firefoxConnector import FirefoxConnector
 from pageobjects.basepageobject import BasePageObject
 from pageobjects.basepageelement import BasePageElement
 import urlparse, time
+from pageobjects.page.statisticsbasepageobject import StatisticsBasePageObject
 
 
-class StatisticsCommentPageObject(BasePageObject):
+class StatisticsCommentPageObject(StatisticsBasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver
         self.driver.get(urlparse.urljoin(base_url, "/%s/statistics/comment/" % pages["dirty-south.url"]))
