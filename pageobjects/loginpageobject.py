@@ -10,8 +10,8 @@ class SignInElement(BasePageElement):
         self.locator = locators["login.open"]
 
     def __set__(self, obj, val):
-        se = FirefoxConnector.driver
-        se.find_element_by_id(self.locator).click()
+        driver = FirefoxConnector.driver
+        driver.find_element_by_id(self.locator).click()
 
 
 class UsernameElement(BasePageElement):
