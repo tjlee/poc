@@ -140,6 +140,14 @@ class PageObjectExample(unittest.TestCase):
         pdpo = ProfileDataPageObject(self.driver, self.base_url)
         rapo = RecentActivityPageObject(self.driver, self.base_url)
 
+    def test_edit_page_about(self):
+        self.login()
+
+        apo = AboutPageObject(self.driver, self.base_url)
+        apo.edit_about_click()
+        apo.about_iframe_text = "additional text"
+        apo.submit_click()
+
     def tearDown(self):
         self.driver.quit()
         self.assertEqual([], self.verificationErrors)
