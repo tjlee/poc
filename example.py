@@ -79,7 +79,6 @@ class PageObjectExample(unittest.TestCase):
         stat5.view_month_statistic()
 
     def test_navigate_artist_menu(self):
-
         self.login()
 
         dpo = DashboardPageObject(self.driver, self.base_url)
@@ -147,6 +146,54 @@ class PageObjectExample(unittest.TestCase):
         apo.edit_about_click()
         apo.about_iframe_text = "additional text"
         apo.submit_click()
+
+    def test_add_chart(self):
+        self.login()
+        self.add_chart("test")
+
+    def test_edit_chart(self):
+        self.login()
+
+        chart_name = "t2est2"
+        new_chart_name = "t3est3"
+
+        self.add_chart(chart_name)
+        cpo = PageChartsPageObject(self.driver, self.base_url)
+
+        cpo.edit_chart_by_name(chart_name)
+        cpo.chart_title = new_chart_name
+        cpo.publish_chart(new_chart_name)
+
+        cpo.__init__(self.driver, self.base_url)
+        cpo.delete_chart_by_name(new_chart_name)
+
+    def test_comment_chart_by_name(self):
+        self.login()
+        cpo = PageChartsPageObject(self.driver, self.base_url)
+        chart_name = "t3est3"
+        cpo.comment_chart_by_name(comment="now way",chart_name=chart_name)
+
+    def add_chart(self, chart_title="test"):
+        cpo = PageChartsPageObject(self.driver, self.base_url)
+        cpo.add_chart()
+
+        cpo.chart_title = chart_title
+        cpo.chart_description = "test description"
+
+        cpo.chart_first_artist = "lalala"
+        cpo.chart_first_label = "lalala"
+        cpo.chart_first_name = "lalala"
+
+        cpo.chart_second_artist = "lalala1"
+        cpo.chart_second_label = "lalala1"
+        cpo.chart_second_name = "lalala1"
+
+        cpo.chart_third_artist = "lalala2"
+        cpo.chart_third_label = "lalala2"
+        cpo.chart_third_name = "lalala2"
+
+        cpo.publish_chart(chart_title)
+
 
     def tearDown(self):
         self.driver.quit()

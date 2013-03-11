@@ -10,15 +10,7 @@ class PhotosPageObject(BasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver
         self.driver.get(urlparse.urljoin(base_url, "/%s/galleries/" % pages["dirty-south.url"]))
-
-        for i in range(60):
-            try:
-                if self.driver.find_element_by_class_name("gallery-detail-header").is_displayed(): break
-            except:
-                pass
-            time.sleep(1)
-        else:
-            self.fail("[error]: .gallery-detail-header box is not found")
+        self.wait_for_element_displayed_by_class(self.driver, "gallery-detail-header")
 
         # TODO: => "Labbler / %s / Photos"
         self.assertEqual("Labbler / %s" % pages["dirty-south.name"], self.driver.title)

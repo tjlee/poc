@@ -10,16 +10,7 @@ class ClubsPageObject(BasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver
         self.driver.get(urlparse.urljoin(base_url, "/%s/clubs/" % pages["dirty-south.url"]))
-
-        for i in range(60):
-            try:
-                if self.driver.find_element_by_class_name("club").is_displayed() or \
-                        self.driver.find_element_by_class_name("empty-noises-big").is_displayed(): break
-            except:
-                pass
-            time.sleep(1)
-        else:
-            self.fail("[error]: .club or empty-noises-big is not found")
+        self.wait_for_element_displayed_by_multiple_classes(self.driver, "club", "empty-noises-big")
 
         #TODO: => "Labbler / %s / Clubs
         self.assertEqual("Labbler / %s" % pages["dirty-south.name"], self.driver.title)

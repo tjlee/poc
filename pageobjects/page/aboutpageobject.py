@@ -23,30 +23,12 @@ class AboutPageObject(BasePageObject):
     def __init__(self, driver, base_url):
         self.driver = driver
         self.driver.get(urlparse.urljoin(base_url, "/%s/about/" % pages["dirty-south.url"]))
-
-        for i in range(60):
-            try:
-                if self.driver.find_element_by_class_name("about-page-text").is_displayed(): break
-            except:
-                pass
-            time.sleep(1)
-        else:
-            self.fail("[error]: .about-page-text is not found")
-
+        self.wait_for_element_displayed_by_class(self.driver, "about-page-text")
         self.assertEqual("Labbler / %s" % pages["dirty-south.name"], self.driver.title)
 
     def edit_about_click(self):
         self.driver.find_element_by_css_selector("li.edit a").click()
-
-        for i in range(5):
-            try:
-                if self.driver.find_element_by_css_selector("div.text_editor").is_displayed(): break
-            except:
-                pass
-            time.sleep(1)
-
-        else:
-            self.fail("[error]: can not edit about")
+        self.wait_for_element_displayed_by_css(self.driver, "div.text_editor", timeout=5)
 
     def submit_click(self):
         self.driver.find_element_by_css_selector(locators["about.submit"]).click()
