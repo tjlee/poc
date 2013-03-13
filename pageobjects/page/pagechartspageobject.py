@@ -140,7 +140,7 @@ class PageChartsPageObject(BasePageObject):
         #TODO: Change after bug-fix to "Labbler / %s / Charts"
         self.assertEqual("Labbler / %s / Charts / Archive" % pages["dirty-south.name"], self.driver.title)
 
-    def add_chart(self):
+    def add_chart_btn_click(self):
         self.driver.find_element_by_css_selector(locators["chart.add"]).click()
         self.wait_for_element_displayed_by_id(self.driver, "id_title")
         self.assertEqual("Labbler / %s / Create chart" % pages["dirty-south.name"], self.driver.title)

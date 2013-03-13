@@ -175,7 +175,7 @@ class PageObjectExample(unittest.TestCase):
 
     def add_chart(self, chart_title="test"):
         cpo = PageChartsPageObject(self.driver, self.base_url)
-        cpo.add_chart()
+        cpo.add_chart_btn_click()
 
         cpo.chart_title = chart_title
         cpo.chart_description = "test description"
@@ -193,6 +193,42 @@ class PageObjectExample(unittest.TestCase):
         cpo.chart_third_name = "lalala2"
 
         cpo.publish_chart(chart_title)
+
+    def test_add_release(self):
+        self.login()
+        dpo = DiscographyPageObject(self.driver, self.base_url)
+        dpo.add_release_btn_click()
+
+        release_name = "release title"
+        dpo.release_title = release_name
+        dpo.release_artist = "artist"
+        dpo.release_label = "label"
+        dpo.release_date = "2013-03-27"
+        
+        dpo.select_genre()
+
+        dpo.release_first_artist = "ar"
+        dpo.release_first_track = "track"
+        dpo.release_first_mix = "mix"
+        dpo.release_first_hours = "0"
+        dpo.release_first_minutes = "2"
+        dpo.release_first_seconds = "33"
+
+        dpo.release_second_artist = "ar"
+        dpo.release_second_track = "track"
+        dpo.release_second_mix = "mix"
+        dpo.release_second_hours = "0"
+        dpo.release_second_minutes = "2"
+        dpo.release_second_seconds = "33"
+
+        dpo.release_third_artist = "ar"
+        dpo.release_third_track = "track"
+        dpo.release_third_mix = "mix"
+        dpo.release_third_hours = "0"
+        dpo.release_third_minutes = "2"
+        dpo.release_third_seconds = "33"
+
+        dpo.publish_release(release_name)
 
 
     def tearDown(self):
