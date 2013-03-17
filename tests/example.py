@@ -1,5 +1,5 @@
 import unittest
-from pageobjects.loginpageobject import LoginPageObject
+from pageobjects.login.loginpageobject import LoginPageObject
 from pageobjects.page.aboutpageobject import AboutPageObject
 from pageobjects.page.bookingpageobject import BookingPageObject
 from pageobjects.page.calendarpageobject import CalendarPageObject
@@ -40,7 +40,7 @@ from pageobjects.yourprofile.discover.releasespageobject import ReleasesPageObje
 
 from pageobjects.yourprofile.messages.messagespageobject import MessagessPageObject
 
-from pageobjects.firefoxConnector import FirefoxConnector
+from pageobjects.base.firefoxConnector import FirefoxConnector
 
 
 class PageObjectExample(unittest.TestCase):
@@ -48,7 +48,7 @@ class PageObjectExample(unittest.TestCase):
         self.verificationErrors = []
         self.driver = FirefoxConnector.driver
         self.driver.implicitly_wait(30)
-        self.base_url = "https://dev.labbler.com/"
+        self.base_url = FirefoxConnector.base_url
 
     def test_look_extended_statistics(self):
         self.login()
@@ -171,7 +171,13 @@ class PageObjectExample(unittest.TestCase):
         self.login()
         cpo = PageChartsPageObject(self.driver, self.base_url)
         chart_name = "t3est3"
-        cpo.comment_chart_by_name(comment="now way",chart_name=chart_name)
+        cpo.comment_chart_by_name(comment="now way", chart_name=chart_name)
+
+    def test_comment_release_by_name(self):
+        self.login()
+        dpo = DiscographyPageObject(self.driver, self.base_url)
+        release_name = "new title forever"
+        dpo.comment_release_by_name(comment="to to ro bo", release_name=release_name)
 
     def add_chart(self, chart_title="test"):
         cpo = PageChartsPageObject(self.driver, self.base_url)
@@ -196,15 +202,24 @@ class PageObjectExample(unittest.TestCase):
 
     def test_add_release(self):
         self.login()
-        dpo = DiscographyPageObject(self.driver, self.base_url)
-        dpo.add_release_btn_click()
-
         release_name = "release title"
+        # self.add_release(release_name)
+        rpo = DiscographyPageObject(self.driver, self.base_url)
+
+        rpo.edit_release_by_name(release_name)
+        new_release_name = "new title forever"
+        rpo.release_title = new_release_name
+        rpo.publish_release(new_release_name)
+
+    def add_release(self, release_name="release title" ):
+        dpo = DiscographyPageObject(self.driver, self.base_url)
+
+        dpo.add_release_btn_click()
         dpo.release_title = release_name
         dpo.release_artist = "artist"
         dpo.release_label = "label"
         dpo.release_date = "2013-03-27"
-        
+
         dpo.select_genre()
 
         dpo.release_first_artist = "ar"
@@ -229,6 +244,17 @@ class PageObjectExample(unittest.TestCase):
         dpo.release_third_seconds = "33"
 
         dpo.publish_release(release_name)
+
+
+    def test_add_new_entity(self):
+        self.login()
+        npo = PageNewsPageObject(self.driver, self.base_url)
+        npo.add_news_btn_click()
+
+        news_title = "temp title"
+        npo.news_entry_title_element = news_title
+        npo.news_entry_text_element = "ALALALALALALALHBAHHHH"
+        npo.submit_news_entry(news_title)
 
 
     def tearDown(self):

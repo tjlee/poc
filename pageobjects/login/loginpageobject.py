@@ -1,8 +1,7 @@
 from pageobjects import locators
-from pageobjects.firefoxConnector import FirefoxConnector
-from pageobjects.basepageobject import BasePageObject
-from pageobjects.basepageelement import BasePageElement
-import time
+from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base.basepageobject import BasePageObject
+from pageobjects.base.basepageelement import BasePageElement
 
 
 class UsernameElement(BasePageElement):
