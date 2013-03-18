@@ -1,4 +1,4 @@
-from pageobjects.firefoxConnector import FirefoxConnector
+from pageobjects.base.firefoxConnector import FirefoxConnector
 
 
 class BasePageElement(object):

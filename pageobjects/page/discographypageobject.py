@@ -1,9 +1,12 @@
+import urlparse
+
+from selenium.webdriver.common.keys import Keys
+
 from pageobjects.page import locators
 from pageobjects.page import pages
-from pageobjects.firefoxConnector import FirefoxConnector
-from pageobjects.basepageobject import BasePageObject
-from pageobjects.basepageelement import BasePageElement
-import urlparse, time
+from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base.basepageobject import BasePageObject
+from pageobjects.base.basepageelement import BasePageElement
 
 
 class ReleaseTitleElement(BasePageElement):
@@ -281,13 +284,34 @@ class DiscographyPageObject(BasePageObject):
 
     def select_genre(self):
         """
-        Hardcoded to Chill out
+        Hardcoded to "Chill out"
         """
         self.driver.find_element_by_id("cuselFrame-id_genre").click()
         self.driver.find_element_by_css_selector('#cusel-scroll-id_genre span[val="2"]').click()
-
 
     def publish_release(self, release_name="test_release"):
         self.driver.find_element_by_css_selector(locators["release.publish"]).click()
         self.wait_for_element_displayed_by_css(self.driver, "div.release-entry")
         self.assertEqual("Labbler / %s / %s" % (pages["dirty-south.name"], release_name), self.driver.title)
+
+    def edit_release_by_name(self, release_name):
+        self.driver.find_element_by_link_text(release_name).click() # selecting first one
+        self.wait_for_element_displayed_by_css(self.driver, "div.release-track-list")
+        self.driver.find_element_by_css_selector(locators["release.edit"]).click()
+        self.wait_for_element_displayed_by_id(self.driver, locators["release.title"])
+        self.assertEqual('Labbler / %s / Edit "%s"' % (pages["dirty-south.name"], release_name), self.driver.title)
+
+    def comment_release_by_name(self, comment="lololo3", release_name="test"):
+        self.driver.find_element_by_link_text(release_name).click()
+        self.wait_for_element_displayed_by_css(self.driver, "div.release-track-list")
+
+        self.driver.find_element_by_id("id_comment").send_keys(comment)
+        self.driver.find_element_by_id("id_comment").send_keys(Keys.RETURN)
+        self.wait_for_element_displayed_by_css(self.driver, "span.js-remove-comment", timeout=5)
+
+    def delete_release_by_name(self, release_name="release title"):
+        self.edit_release_by_name(release_name)
+        self.driver.find_element_by_id(locators["release.delete"]).click()
+        self.wait_for_element_displayed_by_css(self.driver, "input.entry-delete-button", timeout=5)
+        self.driver.find_element_by_css_selector(locators["release.delete_popup"]).click()
+        self.wait_for_element_displayed_by_css(self.driver, "ul.release-list")

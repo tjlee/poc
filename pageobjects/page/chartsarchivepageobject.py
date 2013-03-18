@@ -1,9 +1,8 @@
-from pageobjects import locators
+import urlparse
+
 from pageobjects.page import pages
-from pageobjects.firefoxConnector import FirefoxConnector
-from pageobjects.basepageobject import BasePageObject
-from pageobjects.basepageelement import BasePageElement
-import urlparse, time
+from pageobjects.base.basepageobject import BasePageObject
+from pageobjects.base.basepageelement import BasePageElement
 
 
 class ChartsArchivePageObject(BasePageObject):

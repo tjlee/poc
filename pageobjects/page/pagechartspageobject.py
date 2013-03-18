@@ -1,10 +1,12 @@
+import urlparse
+
 from selenium.webdriver.common.keys import Keys
+
 from pageobjects.page import locators
 from pageobjects.page import pages
-from pageobjects.firefoxConnector import FirefoxConnector
-from pageobjects.basepageobject import BasePageObject
-from pageobjects.basepageelement import BasePageElement
-import urlparse, time
+from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base.basepageobject import BasePageObject
+from pageobjects.base.basepageelement import BasePageElement
 
 
 class ChartTitleElement(BasePageElement):

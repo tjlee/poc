@@ -12,7 +12,8 @@ class StatisticsPageTests(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
         self.driver = FirefoxConnector.driver
-        self.driver.implicitly_wait(30)
+        self.driver.implicitly_wait(10)
+
         self.base_url = FirefoxConnector.base_url
 
     def test_look_extended_statistics(self):
