@@ -1,5 +1,5 @@
 import unittest
-from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base import selenium_driver
 from pageobjects.login.loginpageobject import LoginPageObject
 from pageobjects.page.aboutpageobject import AboutPageObject
 
@@ -7,9 +7,9 @@ from pageobjects.page.aboutpageobject import AboutPageObject
 class AboutPageTests(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
-        self.driver = FirefoxConnector.driver
+        self.driver = selenium_driver.connect()
         self.driver.implicitly_wait(10)
-        self.base_url = FirefoxConnector.base_url
+        self.base_url = selenium_driver.base_url
 
     def tearDown(self):
         self.driver.quit()

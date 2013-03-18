@@ -1,10 +1,10 @@
 import urlparse
 
 from selenium.webdriver.common.keys import Keys
+from pageobjects.base import selenium_driver
 
 from pageobjects.page import locators
 from pageobjects.page import pages
-from pageobjects.base.firefoxConnector import FirefoxConnector
 from pageobjects.base.basepageobject import BasePageObject
 from pageobjects.base.basepageelement import BasePageElement
 
@@ -14,7 +14,7 @@ class ChartTitleElement(BasePageElement):
         self.locator = locators["chart.title"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -24,7 +24,7 @@ class ChartDescriptionElement(BasePageElement):
         self.locator = locators["chart.description"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).send_keys(value)
 
 
@@ -33,7 +33,7 @@ class ChartBuyLinkElement(BasePageElement):
         self.locator = locators["chart.buy_link"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).send_keys(value)
 
 
@@ -42,7 +42,7 @@ class ChartFirstLineNameElement(BasePageElement):
         self.locator = locators["chart.first_name"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -51,7 +51,7 @@ class ChartFirstLineArtistElement(BasePageElement):
         self.locator = locators["chart.first_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -60,7 +60,7 @@ class ChartFirstLineLabelElement(BasePageElement):
         self.locator = locators["chart.first_label"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -69,7 +69,7 @@ class ChartSecondLineNameElement(BasePageElement):
         self.locator = locators["chart.second_name"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -78,7 +78,7 @@ class ChartSecondLineArtistElement(BasePageElement):
         self.locator = locators["chart.second_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -87,7 +87,7 @@ class ChartSecondLineLabelElement(BasePageElement):
         self.locator = locators["chart.second_label"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -96,7 +96,7 @@ class ChartThirdLineNameElement(BasePageElement):
         self.locator = locators["chart.third_name"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -105,7 +105,7 @@ class ChartThirdLineArtistElement(BasePageElement):
         self.locator = locators["chart.third_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 
@@ -114,7 +114,7 @@ class ChartThirdLineLabelElement(BasePageElement):
         self.locator = locators["chart.third_label"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).send_keys(value)
 
 

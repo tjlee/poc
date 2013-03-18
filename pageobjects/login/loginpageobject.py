@@ -1,5 +1,5 @@
 from pageobjects import locators
-from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base import selenium_driver
 from pageobjects.base.basepageobject import BasePageObject
 from pageobjects.base.basepageelement import BasePageElement
 
@@ -9,7 +9,7 @@ class UsernameElement(BasePageElement):
         self.locator = locators["login.username"]
 
     def __set__(self, obj, val):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).send_keys(val)
 
 
@@ -17,9 +17,9 @@ class PasswordElement(BasePageElement):
     def __init__(self):
         self.locator = locators["login.password"]
 
-    def __set__(self, obj, val):
-        driver = FirefoxConnector.driver
-        driver.find_element_by_id(self.locator).send_keys(val)
+    def __set__(self, instance, value):
+        driver = selenium_driver.driver
+        driver.find_element_by_id(self.locator).send_keys(value)
 
 
 class LoginPageObject(BasePageObject):

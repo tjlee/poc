@@ -1,8 +1,8 @@
 import urlparse
+from pageobjects.base import selenium_driver
 
 from pageobjects.page import locators
 from pageobjects.page import pages
-from pageobjects.base.firefoxConnector import FirefoxConnector
 from pageobjects.base.basepageobject import BasePageObject
 from pageobjects.base.basepageelement import BasePageElement
 
@@ -12,7 +12,7 @@ class AboutIframeText(BasePageElement):
         pass
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.switch_to_frame(driver.find_elements_by_tag_name('iframe')[0])
         driver.find_elements_by_tag_name('p')[0].send_keys(value)
         driver.switch_to_default_content()

@@ -1,10 +1,10 @@
 import urlparse
 
 from selenium.webdriver.common.keys import Keys
+from pageobjects.base import selenium_driver
 
 from pageobjects.page import locators
 from pageobjects.page import pages
-from pageobjects.base.firefoxConnector import FirefoxConnector
 from pageobjects.base.basepageobject import BasePageObject
 from pageobjects.base.basepageelement import BasePageElement
 
@@ -14,7 +14,7 @@ class ReleaseTitleElement(BasePageElement):
         self.locator = locators["release.title"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -24,7 +24,7 @@ class ReleaseArtistElement(BasePageElement):
         self.locator = locators["release.artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -34,7 +34,8 @@ class ReleaseLabelElement(BasePageElement):
         self.locator = locators["release.label"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
+
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -44,19 +45,9 @@ class ReleaseDateElement(BasePageElement):
         self.locator = locators["release.date"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.execute_script("$('#id_release_date').attr('readonly',false)")
         driver.find_element_by_id(self.locator).send_keys(value)
-
-#
-# class ReleaseGenreElement(BasePageElement):
-#     def __init__(self):
-#         self.locator = locators["release.genre"]
-#
-#     def __set__(self, instance, value):
-#         driver = FirefoxConnector.driver
-#         # TODO: due to cusel can be problems
-#         driver.find_element_by_css_selector(self.locator).send_keys(value)
 
 
 class ReleaseFirstTrackElement(BasePageElement):
@@ -64,7 +55,7 @@ class ReleaseFirstTrackElement(BasePageElement):
         self.locator = locators["release.first_track"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -74,7 +65,7 @@ class ReleaseFirstArtistElement(BasePageElement):
         self.locator = locators["release.first_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -84,7 +75,7 @@ class ReleaseFirstMixElement(BasePageElement):
         self.locator = locators["release.first_mix"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -94,7 +85,7 @@ class ReleaseFirstTrackHoursElement(BasePageElement):
         self.locator = locators["release.first_hours"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -104,7 +95,7 @@ class ReleaseFirstTrackMinutesElement(BasePageElement):
         self.locator = locators["release.first_minutes"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -114,7 +105,8 @@ class ReleaseFirstTrackSecondsElement(BasePageElement):
         self.locator = locators["release.first_seconds"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
+
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -126,7 +118,7 @@ class ReleaseSecondTrackElement(BasePageElement):
         self.locator = locators["release.second_track"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -136,7 +128,7 @@ class ReleaseSecondArtistElement(BasePageElement):
         self.locator = locators["release.second_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -146,7 +138,7 @@ class ReleaseSecondMixElement(BasePageElement):
         self.locator = locators["release.second_mix"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -156,7 +148,7 @@ class ReleaseSecondTrackHoursElement(BasePageElement):
         self.locator = locators["release.second_hours"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -166,7 +158,7 @@ class ReleaseSecondTrackMinutesElement(BasePageElement):
         self.locator = locators["release.second_minutes"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -176,7 +168,7 @@ class ReleaseSecondTrackSecondsElement(BasePageElement):
         self.locator = locators["release.second_seconds"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -188,7 +180,7 @@ class ReleaseThirdTrackElement(BasePageElement):
         self.locator = locators["release.third_track"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -198,7 +190,7 @@ class ReleaseThirdArtistElement(BasePageElement):
         self.locator = locators["release.third_artist"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -208,7 +200,7 @@ class ReleaseThirdMixElement(BasePageElement):
         self.locator = locators["release.third_mix"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_name(self.locator).clear()
         driver.find_element_by_name(self.locator).send_keys(value)
 
@@ -218,7 +210,7 @@ class ReleaseThirdTrackHoursElement(BasePageElement):
         self.locator = locators["release.third_hours"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -228,7 +220,7 @@ class ReleaseThirdTrackMinutesElement(BasePageElement):
         self.locator = locators["release.third_minutes"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 
@@ -238,7 +230,7 @@ class ReleaseThirdTrackSecondsElement(BasePageElement):
         self.locator = locators["release.third_seconds"]
 
     def __set__(self, instance, value):
-        driver = FirefoxConnector.driver
+        driver = selenium_driver.driver
         driver.find_element_by_id(self.locator).clear()
         driver.find_element_by_id(self.locator).send_keys(value)
 

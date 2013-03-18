@@ -1,17 +1,16 @@
 import unittest
 import time
-from pageobjects.base.firefoxConnector import FirefoxConnector
 from pageobjects.login.loginpageobject import LoginPageObject
 from pageobjects.page.pagenewspageobject import PageNewsPageObject
+from pageobjects.base import selenium_driver
 
 
 class NewsPageTests(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
-        self.driver = FirefoxConnector.driver
+        self.driver = selenium_driver.connect()
         self.driver.implicitly_wait(10)
-
-        self.base_url = FirefoxConnector.base_url
+        self.base_url = selenium_driver.base_url
 
     def tearDown(self):
         self.driver.quit()
@@ -32,7 +31,7 @@ class NewsPageTests(unittest.TestCase):
 
         npo = PageNewsPageObject(self.driver, self.base_url)
         npo.comment_news_by_title(comment="to trolo lo lo", news_title=news_title)
-        time.sleep(1) #hack as we slower than test :)
+        time.sleep(1) #hack as we slower than test :0
         self.remove_news_entity(news_title)
 
     def test_edit_news_entity(self):

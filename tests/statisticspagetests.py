@@ -1,5 +1,5 @@
 import unittest
-from pageobjects.base.firefoxConnector import FirefoxConnector
+from pageobjects.base import selenium_driver
 from pageobjects.login.loginpageobject import LoginPageObject
 from pageobjects.page.statisticscommentpageobject import StatisticsCommentPageObject
 from pageobjects.page.statisticsfollowingpageobject import StatisticsFollowingPageObject
@@ -11,10 +11,10 @@ from pageobjects.page.statisticsviewpageobject import StatisticsViewPageObject
 class StatisticsPageTests(unittest.TestCase):
     def setUp(self):
         self.verificationErrors = []
-        self.driver = FirefoxConnector.driver
+        self.driver = selenium_driver.connect()
         self.driver.implicitly_wait(10)
 
-        self.base_url = FirefoxConnector.base_url
+        self.base_url = selenium_driver.base_url
 
     def test_look_extended_statistics(self):
         self.login()
